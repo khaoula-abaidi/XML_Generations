@@ -1,6 +1,5 @@
 <?php
 
-
 class generateTeiClass
 {
     const version = '1.0';
@@ -8,11 +7,16 @@ class generateTeiClass
     const TEI = 'TEI';
     const xmlns = 'http://www.tei-c.org/ns/1.0';
     const xmlnsHal = 'http://hal.archives-ouvertes.fr/';
+    const xmlnsXsi = 'http://www.w3.org/2001/XMLSchema-instance';
+    const versionTei = '1.1';
+    const xmlnsXsiLocation = 'http://www.tei-c.org/ns/1.0 http://api.archives-ouvertes.fr/documents/aofr-sword.xsd';
     private $attribute_title;
     private $attribute_ref;
     private $attribute_language;
     private $attribute_abstract;
     private $attribute_listOrg;
+    private $attribute_keywords;
+    private $attribute_classCode;
     public function __construct()
     {
     }
@@ -35,6 +39,13 @@ class generateTeiClass
         $this->attribute_listOrg = [
             'type' => 'structures'
         ];
+        $this->attribute_keywords = [
+           'scheme' => 'author'
+        ];
+        $this->attribute_classCode=[
+            'n' => '',
+            'scheme' =>''
+        ];
     }
     private function generateElementChildren(string $element): array {
         $children = [];
@@ -48,11 +59,15 @@ class generateTeiClass
         }
         return $children;
     }
-    private function generateRootTag(string $name_root_tag,DOMDocument $xml_doc){
+    private function generateRootTag(string $name_root_tag,DOMDocument $xml_doc,DOMElement $child){
 // ------------ Génération des namesspaces && TEI root tag ----------
         $tei = $xml_doc->createElement($name_root_tag);
         $tei->setAttribute('xmlns', self::xmlns);
+        $tei->setAttribute('xmlns:xsi',self::xmlnsXsi);
         $tei->setAttribute('xmlns:hal', self::xmlnsHal);
+        $tei->setAttribute('version',self::versionTei);
+        $tei->setAttribute('xsi:schemaLocation',self::xmlnsXsiLocation);
+        $tei->appendChild($child);
         return $tei;
     }
     /**
@@ -62,7 +77,7 @@ class generateTeiClass
      * @param string $value_tag
      * @return DOMElement
      */
-    private function generateSimpleTag(string $child_tag_name, DOMDocument $xml_doc, array $attributes,string $value_tag = null):DOMElement{
+    private function generateSimpleTag(string $child_tag_name, DOMDocument $xml_doc, array $attributes = null,string $value_tag = null):DOMElement{
         $tag = $xml_doc->createElement($child_tag_name,$value_tag);
         if($attributes) {
             foreach ($attributes as $name_attr => $value_attr) {
@@ -71,7 +86,7 @@ class generateTeiClass
         }
         return $tag;
     }
-    private function generateComplexTag(string $tag_name, DOMDocument $xml_doc,array $children){
+    private function generateComplexTag(string $tag_name, DOMDocument $xml_doc,array $children = null){
         $tag = $xml_doc->createElement($tag_name);
         if($children){
             // relier le noeud fils au parent
@@ -81,34 +96,16 @@ class generateTeiClass
         }
         return $tag;
     }
+    /**
+     * Function tei xml file
+     */
     public function generateTeiFile(){
-
     $xml_doc = new DOMDocument(self::version, self::encoding);
-// ------------ Génération des namesspaces && TEI root tag ----------
-
-    //$tei = $xml_doc->createElement('TEI');
-   // $tei->setAttribute('xmlns', self::xmlns);
-   // $tei->setAttribute('xmlns:hal', self::xmlnsHal);
-    $tei = $this->generateRootTag('TEI',$xml_doc);
-// ------------ TEXT  root tag ----------
-    $text = $xml_doc->createElement('text');
-    // <text>
-    //   <body></body>
-    $body = $xml_doc->createElement('body');
-    $text->appendChild($body);
-    // -------------------------------------<body>
-    // <listBibl>                            </listBibl>
-    $listBibl = $xml_doc->createElement('listBibl');
-    // ---------- <biblFull>                 </biblFull> ---
-    $biblFull = $xml_doc->createElement('biblFull');
-    //       <titleStmt></titleStmt>
-    $titleStmt = $xml_doc->createElement('titleStmt');
+    //       <titleStmt> <title></title></titleStmt>
     // génération du noeud title et le relier au parent titleStmt
-    //$title = $xml_doc->createElement('title', 'Test de dépôt');
     $this->generateAttributesArray();
     $title = $this->generateSimpleTag('title',$xml_doc,$this->attribute_title,'test de dépot');
-    //$title->setAttribute('xml:lang', 'en');
-    $titleStmt->appendChild($title);
+     $titleStmt = $this->generateComplexTag('titleStmt',$xml_doc,[$title]);
     /**
      * // génération des noeuds author et les relier au parent titleStmt
      * $author = $xml_doc->createElement('author');
@@ -132,72 +129,68 @@ class generateTeiClass
      * $titleStmt->appendChild($author);
      * }
      */
-    $biblFull->appendChild($titleStmt);
-    //       <editionStmt>                     </editionStmt>
-    $editionStmt = $xml_doc->createElement('editionStmt');
     //............ <edition></edition>   ..........
-    $edition = $xml_doc->createElement('edition');
     // de facon generale : <edition n = 'option' type = 'option'><date *> <ref *> <fs *>  </edition>
     //  <ref type="file" n="nbfiles" subtype="author" target="Test.pdf"/>
         $ref = $this->generateSimpleTag('ref',$xml_doc,$this->attribute_ref);
-
-     /**$ref = $xml_doc->createElement('ref');
-        //$ref->setAttribute('type', 'file');
-        //$ref->setAttribute('n', '1');
-        //$ref->setAttribute('subtype', 'author');
-        //$ref->setAttribute('target', 'file.pdf');//url document
-        */
-    $edition->appendChild($ref);
-    $editionStmt->appendChild($edition);
-    $biblFull->appendChild($editionStmt);
+        //          <EDITION>    ------------------------------------------------------------------------------
+        //                           [<ref></ref]
+        //                           ------------------------------------------------------------------------------
+        //          </EDITION>
+     $edition = $this->generateComplexTag('edition',$xml_doc,[$ref]);
+        //          <editionStmt>    ------------------------------------------------------------------------------
+        //                           [<edition></edition]
+        //                           ------------------------------------------------------------------------------
+        //          </editionSTMT>
+     $editionStmt = $this->generateComplexTag('editionStmt',$xml_doc,[$edition]);
     //       <notesStmt></notesStmt>
     $notesStmt = $xml_doc->createElement('notesStmt');
     //liste des notes
-    $biblFull->appendChild($notesStmt);
-    //       <sourceDesc>                       </sourceDesc>
-    $sourceStmt = $xml_doc->createElement('sourceStmt');
-    //               <biblStruct>  </biblStruct>
-    $biblStruct = $xml_doc->createElement('biblStruct');
     //    .........<analytic></analytic><monogr></monogr>....
     $analytic = $xml_doc->createElement('analytic');
     // <analytic>  <title*> .. </title> <author*></author> </analytic>
     // per each title :
-    $analytic->appendChild($title);
+        $titleClone = $title->cloneNode(true);
+    $analytic->appendChild($titleClone);
     //per each auteur : $analytic->appendChild($auteur)
-    $biblStruct->appendChild($analytic);
-    $monogr = $xml_doc->createElement('monogr');
     // <monogr> <idno *><title *> <meeting 0><respStmt 0,settlement 0><country 0><editor *><imprint 0><authority *>
-    $biblStruct->appendChild($monogr);
-    $sourceStmt->appendChild($biblStruct);
-    $biblFull->appendChild($sourceStmt);
-    //       <profileDesc></profileDesc>
-    $profileDesc = $xml_doc->createElement('profileDesc');
+        $monogr = $xml_doc->createElement('monogr');
+        //<biblStruct> [ <analytic></analytic><monogr></monogr>] </biblStruct
+        $biblStruct = $this->generateComplexTag('biblStruct',$xml_doc,[$analytic,$monogr]);
+        //          <sourceStmt>    ------------------------------------------------------------------------------
+        //                           [<biblStruct></biblStruct]
+        //                           ------------------------------------------------------------------------------
+        //          </sourceSTMT>
+        $sourceStmt = $this->generateComplexTag('sourceStmt',$xml_doc,[$biblStruct]);
     //general: <langUsage 0><textClass 0><abstract *><particDesc 0><creation 0>
-    $langUsage = $xml_doc->createElement('langUsage');
-    $profileDesc->appendChild($langUsage);
     //<language ident = 'langage du document'/>
     $language = $this->generateSimpleTag('language',$xml_doc,$this->attribute_language);
-    $langUsage->appendChild($language);
-    $textClass = $xml_doc->createElement('textClass');
+    $langUsage = $this->generateComplexTag('langUsage',$xml_doc,[$language]);
     //<keywords scheme = 'author'0>
-    $keywords = $xml_doc->createElement('keywords');
-    $keywords->setAttribute('scheme', 'author');
+        $keywords = $this->generateSimpleTag('keywords',$xml_doc,$this->attribute_keywords);
     //<term xml:lang = 'fr/en/...'>///</term>
-    $textClass->appendChild($keywords);
-    // $classCode = $xml_doc->createElement('classCode');
+    $classCode = $this->generateSimpleTag('classCode',$xml_doc,$this->attribute_classCode);
     // per each <classCode n = '' scheme = '' *>
-    // $textClass->appendChild($classCode);
-    $profileDesc->appendChild($textClass);
+        //<textClass>
+                // <keywords></keywords> <classCode></classCode>
+        // </textClass>
+    $textClass  = $this->generateComplexTag('textClass',$xml_doc,[$keywords,$classCode]);
     $abstract = $this->generateSimpleTag('abstract',$xml_doc,$this->attribute_abstract,'resume du document');
-    $profileDesc->appendChild($abstract);
-    $biblFull->appendChild($profileDesc);
-    $listBibl->appendChild($biblFull);
-    $body->appendChild($listBibl);
-    // -------------------------------------</body>
-    // <back>.......</back>
-    $back = $xml_doc->createElement('back');
-    // -------------------------------------<back>
-    // ......<listOrg></listOrg>.....
+        //          <profileDesc>    ------------------------------------------------------------------------------
+        //                           [<langUsage></langUsage><textClass></textClass><abstract></abstract>]
+        //                           ------------------------------------------------------------------------------
+        //          </profileDesc>
+    $profileDesc = $this->generateComplexTag('profileDesc',$xml_doc,[$langUsage,$textClass,$abstract]);
+        // <BIBLFULL>  ------------------------------------------------------------------------------
+        //         [ <titleStmt></titleStmt>      <editionStmt></editionStmt><notesStmt></notesStmt> <sourceStmt></sourceStmt>   <profileDesc></profileDesc>]
+        //          --------------------------------------------------------------------------------
+        // </BIBLFULL>
+        $biblFull  = $this->generateComplexTag('biblFull',$xml_doc,[$titleStmt,$editionStmt,$notesStmt,$sourceStmt,$profileDesc]);
+        // <TEI><TEXT><BODY><LISTBIBL>[<biblFull></biblFull>]</LISTBIBL></BODY></TEXT></TEI>
+        $listBibl = $this->generateComplexTag('listBibl',$xml_doc,[$biblFull]);
+        //<TEI><TEXT><BODY>[<listBibl></listBibl>]</BODY></TEXT></TEI>
+        $body = $this->generateComplexTag('body',$xml_doc,[$listBibl]);
+                        // <TEI><TEXT><BACK>   ---<listOrg></listOrg>---  </BACK></TEXT></TEI>
        $listOrg = $this->generateSimpleTag('listOrg',$xml_doc,$this->attribute_listOrg);
     // Liste des structures du document :
     /**
@@ -208,16 +201,18 @@ class generateTeiClass
      *  $listOrg->appendChild($org);
      *}
      */
-    $back->appendChild($listOrg);
-    // -------------------------------------<back>
-    $text->appendChild($back);
-    //</text>
-// ------------ relation TEXT  to parent tag TEI ----------
-    $tei->appendChild($text);
+       //<TEI><TEXT>    -------- <BACK>   [<listOrg></listOrg>]  </BACK>--------  </TEXT></TEI>
+        $back = $this->generateComplexTag('back',$xml_doc,[$listOrg]);
+        //  <TEI> ----------------------------<text>  [<body></body><back></back>]   </text>----------------------------   <TEI>
+        $text = $this->generateComplexTag('text',$xml_doc,[$body,$back]);
+ // ------------ Génération des namesspaces && TEI root tag ----------
+        $tei = $this->generateRootTag('TEI',$xml_doc,$text);
 // ------------ Relation du TEI  element au document XML  ----------
     $xml_doc->appendChild($tei);
     $xml = $xml_doc->saveXML();
     //echo $xml;
     $xml_doc->save('teifileClass.xml');
+    $xml_doc->load('teifileClass.xml');
+    echo $xml_doc->schemaValidate('aofr.xsd');
     }
 }
