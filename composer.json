@@ -1,0 +1,41 @@
+{
+  "name": "vendor_name/package_name",
+  "description": "description_text",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "author's name",
+      "email": "email@example.com"
+    }
+  ],
+  "repositories": [{
+    "type": "package",
+    "package": {
+      "name": "swordapp/swordappv2",
+      "version": "1",
+      "source": {
+        "url": "https://github.com/swordapp/swordappv2-php-library.git",
+        "type": "git",
+        "reference": "master"
+      }
+    }
+  }
+  ],
+  "require": {
+    "swordapp/swordappv2": "*",
+    "php": ">=7.0",
+    "ext-libxml" : "*",
+    "ext-curl": "*",
+    "ext-xml": "*",
+    "ext-simplexml": "*",
+    "ext-zip": "*",
+    "phpunit/phpunit": "^8.1",
+    "ext-dom": "*"
+  },
+  "autoload": {
+    "classmap": [
+      "vendor/swordapp/swordappv2/swordappclient.php"
+    ]
+  }
+}

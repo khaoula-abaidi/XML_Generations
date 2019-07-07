@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:hal="http://hal.archives-ouvertes.fr/"
+         version="1.1"
+         xsi:schemaLocation="http://www.tei-c.org/ns/1.0 http://api.archives-ouvertes.fr/documents/aofr-sword.xsd">
+
+    <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>HAL TEI export of hal-00276323</title>
+      </titleStmt>
+      <publicationStmt>
+        <distributor>CCSD</distributor>
+        <availability status="restricted">
+          <licence target="http://creativecommons.org/licenses/by/4.0/">Distributed under a Creative Commons Attribution 4.0 International License</licence>
+        </availability>
+        <date when="2019-06-17T21:46:04+02:00"/>
+      </publicationStmt>
+      <sourceDesc>
+        <p part="N">HAL API platform</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <listBibl>
+        <biblFull>
+          <titleStmt>
+            <title xml:lang="fr">Étude de performance des systèmes de découverte de ressources</title>
+            <author role="aut">
+              <persName>
+                <forename type="first">Heithem</forename>
+                <surname>Abbes</surname>
+              </persName>
+              <idno type="halauthorid">303994</idno>
+              <affiliation ref="#struct-994"/>
+              <affiliation ref="#struct-39219"/>
+            </author>
+            <author role="aut">
+              <persName>
+                <forename type="first">Christophe</forename>
+                <surname>Cérin</surname>
+              </persName>
+              <idno type="halauthorid">303995</idno>
+              <affiliation ref="#struct-994"/>
+            </author>
+            <author role="aut">
+              <persName>
+                <forename type="first">Jean-Christophe</forename>
+                <surname>Dubacq</surname>
+              </persName>
+              <email type="md5">f0617707de5a6496f04281c8ef6e5e30</email>
+              <email type="domain">lipn.univ-paris13.fr</email>
+              <idno type="halauthorid">48127</idno>
+              <affiliation ref="#struct-994"/>
+            </author>
+            <author role="aut">
+              <persName>
+                <forename type="first">Mohamed</forename>
+                <surname>Jemni</surname>
+              </persName>
+              <idno type="halauthorid">128080</idno>
+              <affiliation ref="#struct-39219"/>
+            </author>
+            <editor role="depositor">
+              <persName>
+                <forename>Jean-Christophe</forename>
+                <surname>Dubacq</surname>
+              </persName>
+              <email type="md5">f0617707de5a6496f04281c8ef6e5e30</email>
+              <email type="domain">lipn.univ-paris13.fr</email>
+            </editor>
+            <funder ref="#projanr-5783"/>
+          </titleStmt>
+          <editionStmt>
+            <edition n="v1" type="current">
+              <date type="whenSubmitted">2008-04-29 13:46:04</date>
+              <date type="whenWritten">2008-01</date>
+              <date type="whenModified">2019-02-07 17:52:35</date>
+              <date type="whenReleased">2008-04-29 13:51:29</date>
+              <date type="whenProduced">2008-02-11</date>
+              <date type="whenEndEmbargoed">2008-04-29</date>
+              <ref type="file" target="https://hal.archives-ouvertes.fr/hal-00276323/document">
+                <date notBefore="2008-04-29"/>
+              </ref>
+              <ref type="file" subtype="author" n="1" target="https://hal.archives-ouvertes.fr/hal-00276323/file/acdj-renpar18.pdf">
+                <date notBefore="2008-04-29"/>
+              </ref>
+              <ref type="externalLink" target="http://arxiv.org/pdf/0804.4590"/>
+            </edition>
+            <respStmt>
+              <resp>contributor</resp>
+              <name key="101745">
+                <persName>
+                  <forename>Jean-Christophe</forename>
+                  <surname>Dubacq</surname>
+                </persName>
+                <email type="md5">f0617707de5a6496f04281c8ef6e5e30</email>
+                <email type="domain">lipn.univ-paris13.fr</email>
+              </name>
+            </respStmt>
+          </editionStmt>
+          <publicationStmt>
+            <distributor>CCSD</distributor>
+            <idno type="halId">hal-00276323</idno>
+            <idno type="halUri">https://hal.archives-ouvertes.fr/hal-00276323</idno>
+            <idno type="halBibtex">abbes:hal-00276323</idno>
+            <idno type="halRefHtml">&lt;i&gt;Renpar'18&lt;/i&gt;, Feb 2008, Fribourg, Suisse. papers/r11</idno>
+            <idno type="halRef">Renpar'18, Feb 2008, Fribourg, Suisse. papers/r11</idno>
+          </publicationStmt>
+          <seriesStmt>
+            <idno type="stamp" n="CNRS">CNRS - Centre national de la recherche scientifique</idno>
+            <idno type="stamp" n="GRID5000">Grid'5000</idno>
+            <idno type="stamp" n="UNIV-PARIS13">Université Paris-Nord - Paris XIII </idno>
+            <idno type="stamp" n="LIPN" corresp="UNIV-PARIS13">Laboratoire d'Informatique de Paris-Nord</idno>
+            <idno type="stamp" n="USPC">Université Sorbonne Paris Cité</idno>
+            <idno type="stamp" n="GALILE" corresp="UNIV-PARIS13">Institut Galilée Université Paris 13</idno>
+          </seriesStmt>
+          <notesStmt>
+            <note type="commentary">Publication on CDROM only</note>
+            <note type="audience" n="3">National</note>
+            <note type="invited" n="0">No</note>
+            <note type="popular" n="0">No</note>
+            <note type="peer" n="1">Yes</note>
+            <note type="proceedings" n="1">Yes</note>
+          </notesStmt>
+          <sourceDesc>
+            <biblStruct>
+              <analytic>
+                <title xml:lang="fr">Étude de performance des systèmes de découverte de ressources</title>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Heithem</forename>
+                    <surname>Abbes</surname>
+                  </persName>
+                  <idno type="halauthorid">303994</idno>
+                  <affiliation ref="#struct-994"/>
+                  <affiliation ref="#struct-39219"/>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Christophe</forename>
+                    <surname>Cérin</surname>
+                  </persName>
+                  <idno type="halauthorid">303995</idno>
+                  <affiliation ref="#struct-994"/>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Jean-Christophe</forename>
+                    <surname>Dubacq</surname>
+                  </persName>
+                  <email type="md5">f0617707de5a6496f04281c8ef6e5e30</email>
+                  <email type="domain">lipn.univ-paris13.fr</email>
+                  <idno type="halauthorid">48127</idno>
+                  <affiliation ref="#struct-994"/>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Mohamed</forename>
+                    <surname>Jemni</surname>
+                  </persName>
+                  <idno type="halauthorid">128080</idno>
+                  <affiliation ref="#struct-39219"/>
+                </author>
+              </analytic>
+              <monogr>
+                <title level="m">Actes de Fribourg'2008 : Renpar'18 / SympA'2008 / CFSE'6</title>
+                <meeting>
+                  <title>Renpar'18</title>
+                  <date type="start">2008-02-11</date>
+                  <settlement>Fribourg</settlement>
+                  <country key="CH">Switzerland</country>
+                </meeting>
+                <imprint>
+                  <biblScope unit="volume">1</biblScope>
+                  <biblScope unit="issue">1</biblScope>
+                  <biblScope unit="pp">papers/r11</biblScope>
+                  <date type="datePub">2008-02-11</date>
+                </imprint>
+              </monogr>
+              <idno type="arxiv">0804.4590</idno>
+            </biblStruct>
+          </sourceDesc>
+          <profileDesc>
+            <langUsage>
+              <language ident="fr">French</language>
+            </langUsage>
+            <textClass>
+              <keywords scheme="author">
+                <term xml:lang="en">desktop grid</term>
+                <term xml:lang="en">performance evaluation</term>
+                <term xml:lang="en">services discovery</term>
+                <term xml:lang="en">ZeroConf</term>
+                <term xml:lang="en">Pastry</term>
+              </keywords>
+              <classCode scheme="halDomain" n="info.info-dc">Computer Science [cs]/Distributed, Parallel, and Cluster Computing [cs.DC]</classCode>
+              <classCode scheme="halTypology" n="COMM">Conference papers</classCode>
+            </textClass>
+            <abstract xml:lang="en">The Desktop Grid offers solutions to overcome several challenges and to answer increasingly needs of scientific computing. This technology consists mainly in exploiting PC resources, geographically dispersed, to treat time consuming applications and/or important storage capacity requiring applications. However, as resources number increases, the need for scalability, self-organisation, dynamic reconfiguration, decentralization and performance becomes more and more essential. In this context, this paper evaluates the scalability and performance of P2P tools for registering and discovering services (Publish/Subscribe systems). Three protocols are used in this purpose: Bonjour, Avahi and Pastry. We have studied the behaviour of these protocols related to two criteria: the elapsed time for registrations services and the needed time to discover new services.</abstract>
+            <particDesc>
+              <org type="consortium">Grid'5000</org>
+            </particDesc>
+          </profileDesc>
+        </biblFull>
+      </listBibl>
+    </body>
+    <back>
+      <listOrg type="structures">
+        <org type="laboratory" xml:id="struct-994" status="VALID">
+          <orgName>Laboratoire d'Informatique de Paris-Nord</orgName>
+          <orgName type="acronym">LIPN</orgName>
+          <desc>
+            <address>
+              <addrLine>Institut Galilée, Université Paris 13, 99 avenue Jean-Baptiste Clément, F-93430, Villetaneuse</addrLine>
+              <country key="FR"/>
+            </address>
+            <ref type="url">http://www-lipn.univ-paris13.fr/</ref>
+          </desc>
+          <listRelation>
+            <relation active="#struct-15786" type="direct"/>
+            <relation active="#struct-301340" type="direct"/>
+            <relation active="#struct-303171" type="direct"/>
+            <relation name="UMR7030" active="#struct-441569" type="direct"/>
+          </listRelation>
+        </org>
+        <org type="laboratory" xml:id="struct-39219" status="VALID">
+          <orgName>Technologie de l'Information et de la Communication</orgName>
+          <orgName type="acronym">UTIC</orgName>
+          <desc>
+            <address>
+              <addrLine>5, Avenue Taha Hussein, B. P. : 56, Bab Menara, 1008 Tunis</addrLine>
+              <country key="TN"/>
+            </address>
+            <ref type="url">http://www.esstt.rnu.tn/utic/</ref>
+          </desc>
+          <listRelation>
+            <relation active="#struct-310013" type="direct"/>
+          </listRelation>
+        </org>
+        <org type="institution" xml:id="struct-15786" status="VALID">
+          <orgName>Université Paris 13</orgName>
+          <orgName type="acronym">UP13</orgName>
+          <desc>
+            <address>
+              <country key="FR"/>
+            </address>
+            <ref type="url">http://www.univ-paris13.fr/</ref>
+          </desc>
+        </org>
+        <org type="institution" xml:id="struct-301340" status="VALID">
+          <orgName>Institut Galilée</orgName>
+          <desc>
+            <address>
+              <country key="FR"/>
+            </address>
+          </desc>
+        </org>
+        <org type="regroupinstitution" xml:id="struct-303171" status="VALID">
+          <orgName>Université Sorbonne Paris Cité</orgName>
+          <orgName type="acronym">USPC</orgName>
+          <date type="start">2010</date>
+          <desc>
+            <address>
+              <addrLine>Université Sorbonne Paris Cité | 100-104, avenue de France | 75013 Paris</addrLine>
+              <country key="FR"/>
+            </address>
+            <ref type="url">http://www.sorbonne-paris-cite.fr/fr</ref>
+          </desc>
+        </org>
+        <org type="institution" xml:id="struct-441569" status="VALID">
+          <idno type="IdRef">02636817X</idno>
+          <idno type="ISNI">0000000122597504</idno>
+          <orgName>Centre National de la Recherche Scientifique</orgName>
+          <orgName type="acronym">CNRS</orgName>
+          <date type="start">1939-10-19</date>
+          <desc>
+            <address>
+              <country key="FR"/>
+            </address>
+            <ref type="url">http://www.cnrs.fr/</ref>
+          </desc>
+        </org>
+        <org type="institution" xml:id="struct-310013" status="INCOMING">
+          <orgName>École Supérieure des Sciences et Technologies de Tunis</orgName>
+          <desc>
+            <address>
+              <country key="FR"/>
+            </address>
+          </desc>
+        </org>
+      </listOrg>
+      <listOrg type="projects">
+        <org type="anrProject" xml:id="projanr-5783" status="INCOMING">
+          <idno type="anr">BGPR</idno>
+          <orgName>BGPR</orgName>
+        </org>
+      </listOrg>
+    </back>
+  </text>
+</TEI>

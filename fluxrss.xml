@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<rss version = "2.0">
+    <channel>
+        <title>Flux rss test</title>
+        <link>http://www.developpement-facile.com</link>
+        <item>
+            <title>utiliser la technologie xml</title>
+            <description>voici un nouveau tutoriel pour xml flux</description>
+        </item>
+        <item>
+            <title>Exemple xml</title>
+            <description>voici des exemples de flux rss</description>
+        </item>
+    </channel>
+</rss>
